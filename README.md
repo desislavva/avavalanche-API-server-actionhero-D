@@ -1,4 +1,4 @@
-# My actionhero Project
+# My Avalanche actionhero API Project
 
 _visit www.actionherojs.com for more information_
 

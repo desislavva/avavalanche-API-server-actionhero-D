@@ -1,4 +1,7 @@
 import * as os from "os";
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 export const DEFAULT = {
   servers: {
@@ -15,7 +18,7 @@ export const DEFAULT = {
           ? process.env.ALLOWED_HOSTS.split(",")
           : [],
         // Port or Socket Path
-        port: process.env.PORT || 8080,
+        port: process.env.PORT || process.env.SERVER_PORT,
         // Which IP to listen on (use '0.0.0.0' for all; '::' for all on ipv4 and ipv6)
         // Set to `null` when listening to socket
         bindIP: "0.0.0.0",
