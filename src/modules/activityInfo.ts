@@ -4,33 +4,32 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 export async function getNetworkActivity() {
-    
-        let result = [];
-        let response;
-    
-        await axios.post(process.env.P_CHAIN_BC_CLIENT_BLOCK_ENDPOINT, {
-            jsonrpc: '2.0',
-            id: 1,
-            method: 'platform.getTotalStake',
-            params: {}
-        }, {
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-        }).then(response => {
-            result.push(response.data.result.stake);
-        }).catch(error => {
-            if(!error.response) {
-                console.log("connection refused to avalanche client");
-                return {"result":"connection refused to avalanche client"};
-                
-            } else {
-                console.log(error.response.data);
-                response = error.response.data;
-                return { response };
-            }
-        });
+    let result = [];
+    let returnData;
+
+    await axios.post(process.env.P_CHAIN_BC_CLIENT_BLOCK_ENDPOINT, {
+        jsonrpc: '2.0',
+        id: 1,
+        method: 'platform.getTotalStake',
+        params: {}
+    }, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+    }).then(response => {
+        result.push(response.data.result.stake);
+    }).catch(error => {
+        if(!error.response) {
+            console.log("connection refused to avalanche client");
+            return { result: "connection refused to avalanche client" };
+        } else {
+            console.log(error.response.data);
+            returnData = error.response.data
+            return { returnData };
+        }
+    });
+
     
         await axios.post(process.env.P_CHAIN_BC_CLIENT_BLOCK_ENDPOINT, {
             jsonrpc: '2.0',
@@ -51,8 +50,8 @@ export async function getNetworkActivity() {
                 
             } else {
                 console.log(error.response.data);
-                response = error.response.data;
-                return { response };
+                returnData= error.response.data;
+                return { returnData };
             }
         });
     
@@ -75,8 +74,8 @@ export async function getNetworkActivity() {
                 return;
             } else {
                 console.log(error.response.data);
-                response = error.response.data;
-                return { response };
+                returnData = error.response.data;
+                return { returnData };
             }
         });
     
@@ -99,12 +98,12 @@ export async function getNetworkActivity() {
     
             } else {
                 console.log(error.response.data);
-                response = error.response.data;
-                return { response };
+                returnData = error.response.data;
+                return { returnData };
             }
         });
 
-        return response;
+        return returnData;
     }
 
 

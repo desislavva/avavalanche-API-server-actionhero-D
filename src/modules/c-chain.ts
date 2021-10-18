@@ -141,7 +141,8 @@ export async function getXTransactionsAfterNthFromAddressFromCChain(address: str
         return 1;
     }
 
-    return (response.data.transactions).slice(n - x, n);
+    let result = (response.data.transactions).slice(n - x, n);
+    return result;
 }
 
 ///////////////////////////////////////////////////////////// ADDRESS ////////////////////////////////////////////////////////////
