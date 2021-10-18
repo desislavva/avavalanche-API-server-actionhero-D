@@ -54,7 +54,7 @@ export class GetTransactionByHash extends Action {
 
 
 
-/// X transactions after Nth ///
+/// X transactions after Nth from Address ///
 export class GetXTransactionsAfterNthFromAddress extends Action {
 
     constructor() {

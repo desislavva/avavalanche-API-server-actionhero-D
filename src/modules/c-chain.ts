@@ -56,7 +56,7 @@ export async function getBlockByNumberFromCChain(number: string) {
           'Access-Control-Allow-Origin': '*'
         },
     }).then(response => {
-             result = [response.data, response.data.result.hash];
+           result = [response.data, response.data.result.hash];
     }).catch(error => {
         if(!error.response) {
             result = [1, JSON.parse('{"result":"connection refused to avalanche client"}')];
