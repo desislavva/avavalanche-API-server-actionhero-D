@@ -11,6 +11,7 @@ _Visit www.actionherojs.com for more information about Actionhero._
 ## Config
 
 Setup your .env file.
+
 Template: .env.sample
 
 ## To Run:
