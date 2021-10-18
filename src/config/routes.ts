@@ -20,7 +20,8 @@ export const DEFAULT = {
         { path: "/transactions/recentxchain", action: "GetRecentTransactionsFromXChain" },
         { path: "/transactions/recentpchain", action: "GetRecentTransactionsFromPChain" },
 
-        
+        ////Address////
+        { path: "/address/hash/:hash", action: "GetAddressInfoByHash" },
         
       ],
 

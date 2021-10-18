@@ -84,13 +84,13 @@ export async function getAddressInfoByHashFromXChain(address: string) {
         return [result[1].balances, 'AVAX'];
     }
 
-    for(let i = 0; i < balanceResult[1].balances.length; i++) {
+    for(let i = 0; i < result[1].balances.length; i++) {
         responseForAssets = await axios.post(process.env.X_CHAIN_BC_CLIENT_BLOCK_ENDPOINT, {
             jsonrpc: '2.0',
             id: 1,
             method: 'avm.getAssetDescription',
             params: {
-                'assetID' :`${balanceResult[1].balances[i].asset}`
+                'assetID' :`${result[1].balances[i].asset}`
             }
         }, {
             headers: {
@@ -100,5 +100,5 @@ export async function getAddressInfoByHashFromXChain(address: string) {
         });
     }
     
-    return [balanceResult[1].balances, responseForAssets.data.result];
+    return [result[1].balances, responseForAssets.data.result];
 }
