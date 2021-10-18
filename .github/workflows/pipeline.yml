@@ -50,7 +50,7 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
         
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/avalanche-explorer-web-app
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER}}/avalanche-explorer-apiD
       
     - name: Docker push
-      run: docker push ${{secrets.DOCKER_USER}}/avalanche-explorer-web-app    
+      run: docker push ${{secrets.DOCKER_USER}}/avalanche-explorer-apiD   

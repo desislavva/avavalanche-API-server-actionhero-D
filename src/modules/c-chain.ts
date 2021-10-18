@@ -118,7 +118,7 @@ export async function getXPendingTransactionsAfterNthFromCChain(n: number, x: nu
         },
     }).then(response => {
         result = [0, (response.data.result.transactions).slice(n - x, n)];
-        
+
     }).catch(error => {
         if(!error.response) {
             console.log("connection refused to avalanche client");
