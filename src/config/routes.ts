@@ -6,7 +6,7 @@ export const DEFAULT = {
         { path: "/swagger", action: "swagger" },
 
         ////Activity////
-        { path: "/activity", action: "GetNetworkActivity" },
+        { path: "/network", action: "GetNetworkActivity" },
 
         ////Blocks////
         { path: "/blocks/number/:blocknumber", action: "GetBlockByNumber" },
