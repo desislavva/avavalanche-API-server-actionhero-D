@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import * as websocketServerfrom from "./websocket-server";
+
 
 // load any custom code, configure the env, as needed
 
