@@ -3,7 +3,8 @@ import jestOpenApi from "jest-openapi";
 import * as path from "path";
 import axios from "axios";
 
-require('dotenv').config()
+require('dotenv').config();
+
 jest.setTimeout(50000);
 
 jestOpenApi(path.join(__dirname, "../openapi/openapi.yml"));

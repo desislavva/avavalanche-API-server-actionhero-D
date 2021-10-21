@@ -44,7 +44,7 @@ jobs:
       
     - name: Start server
       run:
-        node server.js&
+        npm run dev
 
     - name: Run tests
       run: |
