@@ -9,7 +9,6 @@ import * as websocketBlockMethods from "./websocket-actions/blocks";
 import * as websocketTransactionMethods from "./websocket-actions/transactions";
 import * as websocketNetworkInfo from "./websocket-actions/activity";
 
-
 dotenv.config();
 
 const wss = new WebSocket.WebSocketServer({ port: 4445 });
