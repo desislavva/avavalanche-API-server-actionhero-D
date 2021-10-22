@@ -11,7 +11,7 @@ const P_CHAIN = "P";
 const C_CHAIN = "0x";
 
 //GET address info by hash
-export async function getAddressInfoByHash(hash: string) {
+export async function getAddressInfoByHash(ws, hash: string) {
   let addressInfoFromXChain;
   let addressInfoFromCChain;
   let addressInfoFromPChain;

@@ -3,7 +3,7 @@ import * as dotenv from "dotenv";
 
 dotenv.config();
 
-export async function getNetWorkActivity() {
+export async function getNetWorkActivity(ws) {
   let result = [];
 
   await axios
@@ -23,17 +23,17 @@ export async function getNetWorkActivity() {
       }
     )
     .then((response) => {
-      return (<any>response).data.result.stake;
+      ws.send(<any>response).data.result.stake;
     })
     .catch((error) => {
       if (!error.response) {
         console.log("connection refused to avalanche client");
-        return JSON.stringify(
-          '{"result":"connection refused to avalanche client"}'
+        ws.send(
+          JSON.stringify('{"result":"connection refused to avalanche client"}')
         );
       } else {
         console.log(error.response.data);
-        return JSON.stringify(error.response.data);
+        ws.send(JSON.stringify(error.response.data));
       }
     });
 

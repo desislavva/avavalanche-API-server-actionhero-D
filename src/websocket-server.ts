@@ -14,57 +14,50 @@ dotenv.config();
 const wss = new WebSocket.WebSocketServer({ port: 4445 });
 
 wss.on('connection', (ws, req) => {
-    console.log(`New connection from IP: ${req.socket.remoteAddress}`);
-
+    console.log(`New connection `);
+    
     ws.on('message', (jsonData) => {
-        let message;
-
-        try {
-            message = JSON.parse(jsonData.toString());
-        } catch (error) {
-            ws.send('Wrong message format - must be JSON');
-            return;
-        }
-
+        let message = JSON.parse(jsonData.toString())
+        
         switch(message.method) {
             case 'getAddressInfoByHash':
-                websocketAddressMethods.getAddressInfoByHash(message.params.hash);
+                websocketAddressMethods.getAddressInfoByHash(ws,message.params.hash);
                 break;
 
             case 'getBlockByHash':
-                websocketBlockMethods.getBlockByHash(message.params.hash);
+                websocketBlockMethods.getBlockByHash(ws,message.params.hash);
                 break;
 
             case 'getBlockByNumber':
-                websocketBlockMethods.getBlockByNumber(message.params.blocknumber);
+                websocketBlockMethods.getBlockByNumber(ws,message.params.blocknumber);
                 break;
 
             case 'getXBlocksFromNthFromCChain':
-                websocketBlockMethods.getXBlocksFromNthFromCChain(message.params.blocknumber, message.params.blockcount);
+                websocketBlockMethods.getXBlocksFromNthFromCChain(ws,message.params.blocknumber, message.params.blockcount);
                 break;
 
             case 'getTransactionByHash':
-                websocketTransactionMethods.getTransactionByHash(message.params.hash);
+                websocketTransactionMethods.getTransactionByHash(ws,message.params.hash);
                 break;
 
             case 'getXTransactionsAfterNthFromAddress':
-                websocketTransactionMethods.getXTransactionsAfterNthFromAddress(message.params.address, message.params.n, message.params.x);
+                websocketTransactionMethods.getXTransactionsAfterNthFromAddress(ws,message.params.address, message.params.n, message.params.x);
                 break;
 
             case 'getXPendingTransactionsAfterNth':
-                websocketTransactionMethods.getXPendingTransactionsAfterNth(message.params.n, message.params.x);
+                websocketTransactionMethods.getXPendingTransactionsAfterNth(ws,message.params.n, message.params.x);
                 break;
 
             case 'getRecentTransactionsFromXChain':
-                websocketTransactionMethods.getRecentTransactionsFromXChain();
+                websocketTransactionMethods.getRecentTransactionsFromXChain(ws);
                 break;
 
             case 'getRecentTransactionsFromPChain':
-                websocketTransactionMethods.getRecentTransactionsFromPChain();
+                websocketTransactionMethods.getRecentTransactionsFromPChain(ws);
                 break;
 
             case 'getNetWorkActivity':
-                websocketNetworkInfo.getNetWorkActivity();
+                websocketNetworkInfo.getNetWorkActivity(ws);
                 break;
         }
     });

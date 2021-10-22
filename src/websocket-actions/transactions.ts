@@ -10,7 +10,7 @@ const X_CHAIN = "X";
 const P_CHAIN = "P";
 const C_CHAIN = "0x";
 
-export async function getTransactionByHash(hash: string) {
+export async function getTransactionByHash(ws, hash: string) {
   let xChainTransaction;
   let cChainTransaction;
   let pChainTransaction;
@@ -37,6 +37,7 @@ export async function getTransactionByHash(hash: string) {
 }
 
 export async function getXTransactionsAfterNthFromAddress(
+  ws,
   address: string,
   n: string,
   x: string
@@ -84,7 +85,11 @@ export async function getXTransactionsAfterNthFromAddress(
   }
 }
 
-export async function getXPendingTransactionsAfterNth(n: string, x: string) {
+export async function getXPendingTransactionsAfterNth(
+  ws,
+  n: string,
+  x: string
+) {
   let cChainTransactions;
 
   if (parseInt(n) > 0 && parseInt(x) > 0) {
@@ -103,7 +108,7 @@ export async function getXPendingTransactionsAfterNth(n: string, x: string) {
   }
 }
 
-export async function getRecentTransactionsFromXChain() {
+export async function getRecentTransactionsFromXChain(ws) {
   let xChainTransaction;
 
   xChainTransaction = await xChainMethods.getRecentTransactions();
@@ -114,7 +119,7 @@ export async function getRecentTransactionsFromXChain() {
   return JSON.stringify(xChainTransaction[1]);
 }
 
-export async function getRecentTransactionsFromPChain() {
+export async function getRecentTransactionsFromPChain(ws) {
   let pChainTransaction;
 
   pChainTransaction = await pChainMethods.getRecentTransactions();
