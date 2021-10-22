@@ -44,7 +44,7 @@ jobs:
       
     - name: Start server
       run:
-        npm run dev
+        node src/server.ts&
 
     - name: Run tests
       run: |
